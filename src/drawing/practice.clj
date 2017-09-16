@@ -20,10 +20,28 @@
   ;; drawing blue background and a snowflake on it
   (q/background-image (:background state))
   (q/image (:flake state) 200 (:y-param state)))
-  
+ 
+;; different format of draw
+(defn draw2 [state]
+  (let [flake (:flake state)
+        background (:background state)
+        y-param (:y-param state)]
+    (q/background-image background)
+    (q/image flake 200 y-param)))
+
+;; different format of draw
+(defn draw3 [{background :background flake :flake y-param :y-param}]
+  (q/background-image background)
+  (q/image flake 200 y-param))
+
+;; different format of draw
+(defn draw4 [{:keys [background flake y-param]}]
+  (q/background-image background)
+  (q/image flake 200 y-param))
+
 
 (q/defsketch practice
-  :title "Clara's Quil practice"
+  :title "Charlotte's Quil practice"
   :size [500 500]
   :setup setup
   :update update
