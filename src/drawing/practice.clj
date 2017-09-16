@@ -1,17 +1,24 @@
 ;; defining namespace to live in this file 
 (ns drawing.practice
-  (:require [quil.core :as q]))
+  (:require [quil.core :as q]
+            [quil.middleware :as m]))
 
-;; setup and draw functions and q/defsketch are added in step 1-3
-(defn setup [])
+;; setup 
+(defn setup []
+  {:flake (q/load-image "images/white_flake.png")
+   :background (q/load-image "images/blue_background.png")})
 
-(defn draw [])
+;; used deconstructing to format this part; removes typing 'state'
+(defn draw [{flake :flake background :background}]
+  (q/background-image background)
+  (q/image flake 200 10))
 
 (q/defsketch practice
   :title "Clara's Quil practice"
   :size [500 500]
   :setup setup
   :draw draw
-  :features [:keep-on-top])
+  :features [:keep-on-top]
+  :middleware [m/fun-mode])
 
 
